@@ -1,0 +1,96 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Checkout - My Awesome Cart{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Checkout</h2>
+
+<div class="container">
+    <div class="col my-4">
+        <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items"></ul>
+        </div>
+    </div>
+
+    <div class="col my-4">
+        <h2>Step 2 - Enter Address & Other Details:</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="itemJson" id="itemJson">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputPhone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputAddress2" class="form-label">Address line 2</label>
+                <textarea class="form-control" id="address2" name="address2" rows="2" placeholder="Apartment, studio, or floor (optional)"></textarea>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Zip Code" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Load cart from localStorage
+    if (localStorage.getItem('cart')) {
+        cart = JSON.parse(localStorage.getItem('cart'));
+    }
+
+    if($.isEmptyObject(cart)){
+        $('#items').append(`<p>Your cart is empty.</p>`);
+    } else {
+        for (item in cart){
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let mylist = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                ${name} <span class="badge bg-black rounded-pill">${qty}</span></li>`;
+            $('#items').append(mylist);
+        }
+    }
+
+    $('#itemJson').val(JSON.stringify(cart));
+    {% if ThankYou %}
+    console.log('Thank you for your order! Your order ID is {{ id }}.');
+        alert('Thank you for your order! Your order ID is {{ id }}. You can track your order using our order tracker.');
+        cart = {};
+        localStorage.removeItem('cart');
+        document.location = '/shop/';
+    {% endif %}
+</script>
+{% endblock %}

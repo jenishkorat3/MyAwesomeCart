@@ -1,0 +1,158 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}About Us | My Awesome Cart{% endblock %}
+
+{% block extra_head %}
+<style>
+  .hero-section {
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #555;
+  }
+
+  .stats-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-item h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  .stat-item p {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .timeline {
+    padding: 3rem 1rem;
+    border-left: 3px solid #0d6efd;
+    position: relative;
+  }
+
+  .timeline-event {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline-event::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #0d6efd;
+    border-radius: 50%;
+    position: absolute;
+    left: -9px;
+    top: 5px;
+  }
+
+  .team-section {
+    margin-top: 4rem;
+    padding: 2rem 0;
+  }
+
+  .team-section h3 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .team-member {
+    text-align: center;
+  }
+
+  .team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="hero-section">
+  <h1>Who We Are</h1>
+  <p>My Awesome Cart is redefining the way India shops online — fast, affordable, and customer-first.</p>
+</div>
+
+<div class="stats-section">
+  <div class="stat-item">
+    <h2>1M+</h2>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat-item">
+    <h2>10K+</h2>
+    <p>Daily Orders</p>
+  </div>
+  <div class="stat-item">
+    <h2>5</h2>
+    <p>Warehouses Nationwide</p>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h3 class="mb-4">Our Journey</h3>
+  <div class="timeline">
+    <div class="timeline-event">
+      <h5>2019 – Founded</h5>
+      <p>Started in a small apartment with a big dream — to make shopping accessible for every Indian.</p>
+    </div>
+    <div class="timeline-event">
+      <h5>2020 – Reached 100K Users</h5>
+      <p>Despite pandemic challenges, we grew rapidly and built strong trust among early customers.</p>
+    </div>
+    <div class="timeline-event">
+      <h5>2023 – Launched Nationwide Delivery</h5>
+      <p>With our own logistics and partners, we started delivering to 25,000+ pin codes across India.</p>
+    </div>
+  </div>
+</div>
+
+<div class="team-section container">
+  <h3>Meet the Core Team</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-3 team-member">
+      <img src="{% static 'shop/jeka.jpeg' %}" alt="Founder">
+      <h6 class="fw-bold">Jenish Korat</h6>
+      <p>Founder & CEO</p>
+    </div>
+    <div class="col-md-3 team-member">
+      <img src="{% static 'shop/prde.jpeg' %}" alt="CTO">
+      <h6 class="fw-bold">Priya Desai</h6>
+      <p>Chief Technology Officer</p>
+    </div>
+    <div class="col-md-3 team-member">
+      <img src="{% static 'shop/vijo.jpeg' %}" alt="Operations">
+      <h6 class="fw-bold">Vikram Joshi</h6>
+      <p>Head of Operations</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
