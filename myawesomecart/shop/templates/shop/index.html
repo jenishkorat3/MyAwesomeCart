@@ -1,16 +1,140 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Shop | My Awesome Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, Shop!</h1>
-    {% load static %}
-    <a href="{% static 'shop/mystatic.txt' %}"> Open to view static file. </a>
-    <a href="{% static 'shop/img.png' %}"><img src="{% static 'blog/img.png' %}" alt="BME Certificate"></a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">My Awesome Cart</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search products"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Product Grid -->
+    <div class="container my-5">
+      <h2 class="mb-4">Popular Products</h2>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100">
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Stylish Chair</h5>
+              <p class="card-text">
+                Modern and comfy chair perfect for any room.
+              </p>
+              <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlndpwDalSNF8TzBG6T7kGv73l0IOReNJpKw&s"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Wooden Table</h5>
+              <p class="card-text">Classic table design with durable finish.</p>
+              <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100">
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Comfy Sofa</h5>
+              <p class="card-text">
+                Relax in style with this comfortable sofa.
+              </p>
+              <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Lamp Stand</h5>
+              <p class="card-text">Elegant lamp stand to brighten your room.</p>
+              <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
