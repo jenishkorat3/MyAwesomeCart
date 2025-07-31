@@ -60,7 +60,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="name-product-{{ product.id }}">{{ product.product_name }}</h5>
                     <p class="card-text">{{ product.desc|truncatechars:40 }}</p>
-                    <p class="card-text fw-bold">₹{{ product.price }}</p>
+                    <p class="card-text fw-bold">₹ <span id="price-product-{{ product.id }}">{{ product.price }}</span></p>
                     <div class="d-flex gap-2">
                       <div id="divproduct-{{ product.id }}" class="divproduct">
                         <a class="btn btn-dark flex-fill cart" id="product-{{ product.id }}">Add to Cart</a>

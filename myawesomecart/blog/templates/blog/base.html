@@ -15,14 +15,14 @@
       }
       {% block css %}{% endblock %}
     </style>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v23.0"></script>
     {% block extra_head %}{% endblock %}
-    <script> window.location = {% url "ShopHome" %} </script>
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="{% url "ShopHome" %}">My Awesome Cart</a>
+        <a class="navbar-brand" href="{% url "ShopHome" %}">My Blogs</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -35,9 +35,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url "home" %}">Home</a>
+              <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url "ShopHome" %}">Home</a>
             </li>
+            <li class="nav-item"><a class="nav-link" href="{% url "ShopTracker" %}">Track Orders</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url "ShopAbout" %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url "ShopContact" %}">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url "BlogHome" %}">Blog</a></li>
           </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search products"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
@@ -47,9 +60,12 @@
       {% block content %}{% endblock %}
     </div>
 
+    <!-- ✅ Full jQuery with AJAX support -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+    <!-- Bootstrap dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     {% block extra_scripts %}{% endblock %}
   </body>
 </html>

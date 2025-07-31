@@ -52,6 +52,7 @@ def about(request):
     return render(request, 'shop/about.html')
 
 def contact(request):
+    ThankYou = False
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -61,8 +62,8 @@ def contact(request):
 
         contact = Contact(name=name, email=email, phone=phone, subject=subject, message=message)
         contact.save()
-
-    return render(request, 'shop/contact.html')
+        ThankYou = True
+    return render(request, 'shop/contact.html', {'ThankYou': ThankYou})
 
 def checkout(request):
     if request.method == 'POST':
