@@ -9,4 +9,5 @@ urlpatterns = [
     path('products/<int:id>/', views.productDetail, name="ProductDetail"),
     path('checkout/', views.checkout, name="ShopCheckout"),
     path('tracker/', views.tracker, name="ShopTracker"),
+    path('search/', views.search, name="ShopSearch"),
 ]

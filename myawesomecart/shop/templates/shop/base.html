@@ -41,9 +41,11 @@
             <li class="nav-item"><a class="nav-link" href="{% url "ShopContact" %}">Contact Us</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url "BlogHome" %}">Blog</a></li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="GET" action="{% url 'ShopSearch' %}">
             <input
               class="form-control me-2"
+              name="search"
+              id="search"
               type="search"
               placeholder="Search products"
               aria-label="Search"

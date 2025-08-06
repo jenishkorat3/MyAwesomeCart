@@ -46,6 +46,7 @@
     $('#trackOrderForm').submit(function(event){
         event.preventDefault(); // Prevent form from submitting normally
         $('#items').empty(); // Clear previous results
+        $('#cart-items').empty(); // Clear previous results
 
         const formData = {
             'orderId': $('#orderId').val(),
@@ -67,7 +68,7 @@
                             </li>`
                         );
                     });
-                     $('#cart-items').empty();
+
                     let items = JSON.parse(data.items_json);
                     if (items) {
                         Object.keys(items).forEach(key => {
@@ -81,6 +82,7 @@
                     }
                 } else if (data.error) {
                     $('#items').append(`<li class="list-group-item text-danger">${data.error}</li>`);
+                    $('#cart-items').append(`<li class="list-group-item text-danger">${data.error}</li>`);
                 }
             },
             error: function(xhr) {
@@ -90,6 +92,7 @@
                     msg = res.error || msg;
                 } catch (e) {}
                 $('#items').append(`<li class="list-group-item text-danger">${msg}</li>`);
+                $('#cart-items').append(`<li class="list-group-item text-danger">${msg}</li>`);
             }
         });
     });

@@ -19,6 +19,7 @@
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="itemJson" id="itemJson">
+            <input type="hidden" name="amount" id="amount">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="inputName" class="form-label">Name</label>
@@ -97,5 +98,7 @@
         localStorage.removeItem('cart');
         document.location = '/shop/';
     {% endif %}
+
+    $('#amount').val(totalPrice);
 </script>
 {% endblock %}

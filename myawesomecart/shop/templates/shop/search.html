@@ -1,0 +1,99 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Search | My Awesome Cart{% endblock %}
+
+{% block extra_head %}
+<style>
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    filter: invert(1);
+    width: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+  }
+  .carousel-control-prev {
+    left: -40px;
+  }
+  .carousel-control-next {
+    right: -40px;
+  }
+  .carousel-inner {
+    padding: 0 50px;
+  }
+  .category-title {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% if category_chunks %}
+    {% for category, chunks in category_chunks.items %}
+    <h3 class="category-title">{{ category }}</h3>
+
+    <div id="carousel-{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+        {% for chunk in chunks %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="row">
+                {% for product in chunk %}
+                <div class="col-3">
+                    <div class="card h-100">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}">
+                    {% else %}
+                        <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="No Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title" id="name-product-{{ product.id }}">{{ product.product_name }}</h5>
+                        <p class="card-text">{{ product.desc|truncatechars:40 }}</p>
+                        <p class="card-text fw-bold">₹ <span id="price-product-{{ product.id }}">{{ product.price }}</span></p>
+                        <div class="d-flex gap-2">
+                        <div id="divproduct-{{ product.id }}" class="divproduct">
+                            <a class="btn btn-dark flex-fill cart" id="product-{{ product.id }}">Add to Cart</a>
+                        </div>
+                        <a href="{% url 'ProductDetail' product.id %}" class="btn btn-outline-dark bg-white text-dark flex-fill" id="reference-{{ product.id }}">Quick View</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        {% endfor %}
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ forloop.counter }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ forloop.counter }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% if message %}
+    <div class="alert alert-info" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+
+{% endblock %}
